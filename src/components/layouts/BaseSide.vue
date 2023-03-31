@@ -9,6 +9,7 @@
       :collapse="isCollapse"
       @open="handleOpen"
       @close="handleClose"
+      :router="true"
   >
     <el-sub-menu index="1">
       <template #title>
@@ -36,7 +37,7 @@
       <el-icon><document /></el-icon>
       <template #title>Navigator Three</template>
     </el-menu-item>
-    <el-menu-item index="4">
+    <el-menu-item index="/about">
       <el-icon><setting /></el-icon>
       <template #title>Navigator Four</template>
     </el-menu-item>

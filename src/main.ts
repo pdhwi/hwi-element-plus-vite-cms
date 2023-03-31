@@ -10,6 +10,7 @@ import App from "./App.vue";
 
 // or use cdn, uncomment cdn link in `index.html`
 
+import router from './router/index'
 
 
 // If you want to use ElMessage, import it.
@@ -17,4 +18,5 @@ import "element-plus/theme-chalk/src/message.scss"
 
 const app = createApp(App);
  app.use(ElementPlus);
+ app.use(router)
 app.mount("#app");
