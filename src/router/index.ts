@@ -1,8 +1,9 @@
 
 import {createRouter,createWebHashHistory} from "vue-router";
 import Layout from "~/components/layouts/layout.vue";
-import Aaa from "~/components/aaa.vue";
-import Bbb from "~/components/bbb.vue";
+import Account from "~/components/systems/account.vue";
+import HwiCms from "~/components/hwiCms.vue";
+
 // 1. 定义路由组件.
 // 也可以从其他文件导入
 
@@ -19,13 +20,13 @@ const routes = [
             children: [
                 {
                     path: '/index',
-                    component: () => Aaa,
+                    component: () => HwiCms  ,
                     name: 'index',
                     meta: { title: '实时定位', icon: 'dashboard', noCache: true }
                 },
                 {
                     path: '/bbb',
-                    component: () => Bbb,
+                    component: () => Account,
                     name: 'bbb',
                     meta: { title: 'Bbb', icon: 'dashboard', noCache: true }
                 },

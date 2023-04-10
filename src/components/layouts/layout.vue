@@ -1,5 +1,5 @@
 <template>
-  <div class="common-layout">
+  <div class="common-layout hwi-layout">
     <el-container>
       <el-header>
         <BaseHeader></BaseHeader>
@@ -23,5 +23,7 @@ export default {
 </script>
 
 <style scoped>
-
+  .hwi-layout .el-aside{
+    width: auto;
+  }
 </style>
