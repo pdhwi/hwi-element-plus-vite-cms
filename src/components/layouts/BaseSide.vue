@@ -34,7 +34,7 @@ import {
   Setting,
 } from '@element-plus/icons-vue'
 
-const isCollapse = ref(true)
+const isCollapse = ref(false)
 const handleOpen = (key: string, keyPath: string[]) => {
   console.log(key, keyPath)
 }
@@ -45,7 +45,7 @@ const handleClose = (key: string, keyPath: string[]) => {
 
 <style>
 .el-menu-vertical-demo:not(.el-menu--collapse) {
-  width: 200px;
+  width: 100%;
   min-height: 400px;
 }
 </style>

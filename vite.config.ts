@@ -4,6 +4,7 @@ import vue from '@vitejs/plugin-vue'
 
 import Components from 'unplugin-vue-components/vite'
 import { ElementPlusResolver } from 'unplugin-vue-components/resolvers'
+import vueSetupExtend from 'vite-plugin-vue-setup-extend'
 
 import Unocss from 'unocss/vite'
 
@@ -33,6 +34,7 @@ export default defineConfig({
   },
   plugins: [
     vue(),
+    vueSetupExtend(),
     Components({
       // allow auto load markdown components under `./src/components/`
       extensions: ['vue', 'md'],
