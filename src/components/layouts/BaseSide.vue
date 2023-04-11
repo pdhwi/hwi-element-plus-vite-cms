@@ -22,6 +22,11 @@
       <template #title>bbb</template>
     </el-menu-item>
 
+    <el-menu-item index="/login">
+      <el-icon><HomeFilled /></el-icon>
+      <template #title>login</template>
+    </el-menu-item>
+
   </el-menu>
 </template>
 
