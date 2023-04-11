@@ -3,6 +3,8 @@ import {createRouter,createWebHashHistory} from "vue-router";
 import Layout from "~/components/layouts/layout.vue";
 import Account from "~/components/systems/account.vue";
 import HwiCms from "~/components/hwiCms.vue";
+import Login from "~/views/login/login.vue";
+import hwiError from "~/views/hwiError.vue";
 
 // 1. 定义路由组件.
 // 也可以从其他文件导入
@@ -11,8 +13,8 @@ import HwiCms from "~/components/hwiCms.vue";
 // 每个路由都需要映射到一个组件。
 // 我们后面再讨论嵌套路由。
 const routes = [
-        //{ path: '/404', component: () => import('@/views/404'), hidden: true , meta: { lookFree: true } },
-        //{ path: '/login',component: () => import('@/views/login/index'), hidden: true , meta: { lookFree: true } },
+        { path: '/404', component: () => hwiError, hidden: true , meta: { lookFree: true } },
+        { path: '/login',component: () => Login, hidden: true , meta: { lookFree: true } },
         {
             path: '',
             component: Layout,
@@ -32,7 +34,7 @@ const routes = [
                 },
             ]
         },
-        //{ path: '*', redirect: '/404', hidden: true , meta: { lookFree: true } }
+        { path: "/:pathMath(.*)", redirect: '/404', hidden: true , meta: { lookFree: true } }
 ]
 
 // 3. 创建路由实例并传递 `routes` 配置

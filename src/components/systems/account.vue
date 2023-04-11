@@ -5,6 +5,7 @@
       ref="multipleTableRef"
       :data="tableData"
       style="width: 100%"
+      :max-height="tableHeight"
       @selection-change="handleSelectionChange"
   >
     <el-table-column type="selection"  width="55" />
@@ -29,6 +30,8 @@ interface User {
   name: string
   address: string
 }
+const tableHeight = ref(500)
+
 const multipleTableRef = ref<InstanceType<typeof ElTable>>()
 const multipleSelection = ref<User[]>([])
 const handleSelectionChange = (val: User[]) => {
