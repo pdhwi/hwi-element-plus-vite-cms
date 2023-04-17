@@ -19,7 +19,7 @@
         <el-form  label-position="right" :model="hwiFrom">
           <h1 class="cms-name" >{{cmsName}}</h1>
           <el-form-item >
-            <el-input placeholder="账号" v-model="hwiFrom.account"></el-input>
+            <el-input placeholder="账号" v-model="hwiFrom.name"></el-input>
           </el-form-item>
           <el-form-item>
             <el-input type="password" placeholder="密码" v-model="hwiFrom.password">
@@ -38,24 +38,43 @@
   //login.vue-2023-04-11-12:04
   import {reactive, ref} from "vue";
   import { Right } from '@element-plus/icons-vue'
+  import {configStore} from "~/store/hwiConfig"
+  import {userLogin} from "~/api/users"
+  import { setToken , setUser  } from '~/utils/auth'
+  import { useRouter } from "vue-router";
+  const router = useRouter();
+
+  const hwiConfigStore = configStore()
   const imgSrc = "../assets/login.webp"
   let  fixStyle = ref("")
   let  vedioCanPlay = ref(false)
   let cmsName = ref("Hwi-cms")
   let hwiFrom = reactive({
-    account: 'superAdmin',
-    password: 'sblk987635..',
+    name: 'hwi',
+    password: '123123',
   })
   function canplay () {
     vedioCanPlay.value = true
   }
   function testaa(){
-    console.log("testaa")
-    handleLogin() 
+    handleLogin()
   }
 
   function handleLogin(){
-    console.log("handleLogin", hwiFrom)
+    userLogin(hwiFrom).then(response => {
+      let data = response.data
+      let code = data.code
+      if (code !== hwiConfigStore.successCode ) {
+        hwiFrom.password = ''
+        return false
+      }
+      setToken(data.data.accessToken)
+      data.data.name = data.data.account
+      setUser(data.data)
+      hwiConfigStore.hwiUser = data.data
+      router.push('index')
+    })
+
   }
 </script>
 
