@@ -17,6 +17,20 @@
       <template #title>首页</template>
     </el-menu-item>
 
+    <el-sub-menu index="1">
+      <template #title>
+        <el-icon><Setting /></el-icon>
+        <span>系统管理</span>
+      </template>
+      <el-menu-item-group >
+        <el-menu-item index="/roles">角色管理</el-menu-item>
+        <el-menu-item index="/users">用户管理</el-menu-item>
+      </el-menu-item-group>
+    </el-sub-menu>
+
+
+
+
     <el-menu-item index="/bbb">
       <el-icon><HomeFilled /></el-icon>
       <template #title>bbb</template>
@@ -37,6 +51,7 @@ import {
   Menu as IconMenu,
   HomeFilled,
   Setting,
+  Location,
 } from '@element-plus/icons-vue'
 
 const isCollapse = ref(false)

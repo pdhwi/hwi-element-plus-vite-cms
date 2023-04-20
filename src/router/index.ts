@@ -5,6 +5,9 @@ import Account from "~/components/systems/account.vue";
 import HwiCms from "~/components/hwiCms.vue";
 import Login from "~/views/login/login.vue";
 import hwiError from "~/views/hwiError.vue";
+import Roles from "~/views/hwicms/system/roles.vue";
+import Users from "~/views/hwicms/system/users.vue";
+
 
 // 1. 定义路由组件.
 // 也可以从其他文件导入
@@ -13,12 +16,13 @@ import hwiError from "~/views/hwiError.vue";
 // 每个路由都需要映射到一个组件。
 // 我们后面再讨论嵌套路由。
 const routes = [
-        { path: '/404', component: () => hwiError, hidden: true , meta: { lookFree: true } },
-        { path: '/login',component: () => Login, hidden: true , meta: { lookFree: true } },
+        { path: '/404', component: () => hwiError, hidden: true , name: '404' , meta: { lookFree: true } },
+        { path: '/login',component: () => Login, hidden: true ,name: 'login' , meta: { lookFree: true } },
         {
             path: '',
             component: Layout,
             redirect: 'index',
+            name: 'hwicms',
             children: [
                 {
                     path: '/index',
@@ -31,6 +35,18 @@ const routes = [
                     component: () => Account,
                     name: 'bbb',
                     meta: { title: 'Bbb', icon: 'dashboard', noCache: true }
+                },
+                {
+                    path: '/roles',
+                    component: () => Roles,
+                    name: 'roles',
+                    meta: { title: 'roles', icon: 'dashboard', noCache: true }
+                },
+                {
+                    path: '/users',
+                    component: () => Users,
+                    name: 'users',
+                    meta: { title: 'users', icon: 'dashboard', noCache: true }
                 },
             ]
         },
