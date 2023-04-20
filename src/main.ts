@@ -14,7 +14,6 @@ import router from './router/index'
 import 'uno.css'
 import { createPinia } from 'pinia'
 
-
 // If you want to use ElMessage, import it.
 import "element-plus/theme-chalk/src/message.scss"
 const pinia = createPinia()

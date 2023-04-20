@@ -16,10 +16,9 @@
   </div>
 </template>
 
-<script>
-export default {
-  name: "layout"
-}
+<script setup lang="ts" name="layout">
+//roles.vue-2023-04-19-16:36
+
 </script>
 
 <style scoped>

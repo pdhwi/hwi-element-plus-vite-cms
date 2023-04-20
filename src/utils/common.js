@@ -32,4 +32,13 @@ export default {
         }
         return a
     },
+    defaultImport: function ( arr , defaultName , type ) {
+        let a = defaultName === "" ? []:[
+            { value: 0, label: defaultName }
+        ]
+        for (let key in arr) {
+            a.push( type ? { value: arr[key], label: arr[key] }:{ value: key, label: arr[key] } )
+        }
+        return a
+    },
 }

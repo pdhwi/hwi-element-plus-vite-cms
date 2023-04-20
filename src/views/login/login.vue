@@ -34,6 +34,8 @@
   </div>
 </template>
 
+
+
 <script setup lang="ts" name="login">
   //login.vue-2023-04-11-12:04
   import {reactive, ref} from "vue";
@@ -48,7 +50,7 @@
   const imgSrc = "../assets/login.webp"
   let  fixStyle = ref("")
   let  vedioCanPlay = ref(false)
-  let cmsName = ref("Hwi-cms")
+  let cmsName = ref(hwiConfigStore.cmsName)
   let hwiFrom = reactive({
     name: 'hwi',
     password: '123123',
