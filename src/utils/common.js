@@ -41,4 +41,29 @@ export default {
         }
         return a
     },
+    getSign: function(appKey){
+        //封装sign
+        let signData ={
+            time:0,
+            app_key:1,
+            sign:""
+        }
+        let t = new Date
+        let signStr = ""
+        signData.time = parseInt(t.getTime()/1000)
+        let rangdstr = this.GetRandStr(signData.time , appKey)
+        let sortD = Object.keys(signData).sort()
+        sortD.forEach(k =>{
+            if( "sign" !== k  ){
+                signStr += k+""+signData[k]
+            }
+        })
+        signStr += rangdstr
+        return  signStr.toLocaleUpperCase()
+    },
+    GetRandStr: function  (t , k){
+        let str = ""+t
+        str = str.slice(str.length-1 )
+        return k.slice( str , 1  )
+    }
 }

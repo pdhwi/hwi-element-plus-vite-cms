@@ -4,6 +4,7 @@ import {configStore} from "~/store/hwiConfig"
 import { getToken, removeToken, removeUser } from '~/utils/auth'
 import router from '~/router'
 import common from '~/utils/common'
+import getSign from '~/utils/sign'
 
 
 // create an axios instance
@@ -37,6 +38,8 @@ service.interceptors.request.use(
             delete config.params.page
             delete config.params.size
         }
+        //增加签名
+        config.data = getSign(config.data,hwiConfigStore.appKey)
         /* if (config.method == 'get') {
           config.data = {hget:1}
         } */
@@ -153,7 +156,6 @@ service.interceptors.response.use(
         })
         return Promise.reject(data)
     }
-
 )
 
 export default service

@@ -70,7 +70,7 @@
         hwiFrom.password = ''
         return false
       }
-      setToken(data.data.accessToken)
+      setToken(data.data.remember_token)
       data.data.name = data.data.account
       setUser(data.data)
       hwiConfigStore.hwiUser = data.data

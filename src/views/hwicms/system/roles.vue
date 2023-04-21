@@ -11,11 +11,13 @@
 
 <script setup lang="ts" name="roles">
 //roles.vue-2023-04-19-16:36
-
+import {configStore} from "~/store/hwiConfig"
 import hwiSystems from "~/utils/structSystems"
 import { addRoles } from "~/api/systems"
 import common from "~/utils/common"
 //初始化参数
+const hwiConfigStore = configStore()
+console.log(hwiConfigStore)
 
 const dataStruct = hwiSystems.RoleStruct
 let submitObj = addRoles
@@ -37,8 +39,24 @@ function addUrl(aaa){
 }
 
 function submitFormDialog(form){
-    console.log("submitFormDialog",form)
+    console.log("submitFormDialog",form )
+    addData(form)
 }
+
+
+function addData(form){
+  addRoles(form).then(response => {
+    let data = response.data
+    let code = data.code
+    console.log(data)
+    if (code !== hwiConfigStore.successCode ) {
+      return false
+    }
+
+  })
+
+}
+
 </script>
 <style lang="scss" scoped>
 
