@@ -28,7 +28,7 @@ export function getRolesById( id ) {
 
 export function addRoles( data ) {
     return request({
-        url: 'api/roles',
+        url: 'api/roles?',
         method: 'post',
         data: data,
     })

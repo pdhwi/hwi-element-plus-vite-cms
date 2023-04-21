@@ -29,6 +29,7 @@ export const configStore = defineStore('hwiConfig', {
                 selectList: [10, 20, 30, 40],
                 perPage: 10
             },
+            appKey:"FHuxSdi27I",
         }
     },
     getters: {

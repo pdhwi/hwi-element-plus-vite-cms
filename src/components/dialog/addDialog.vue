@@ -1,7 +1,4 @@
 <template>
-  <el-button text @click="dialogVisible = true">
-    Click to open Dialog
-  </el-button>
   <el-dialog v-model="dialogVisible"
              :title="props.title"
              :width="config.dialogWidth"
