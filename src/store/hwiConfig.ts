@@ -16,7 +16,7 @@ export const configStore = defineStore('hwiConfig', {
             routerPath: '/',
             restfulApi: true,
             bottomLoad: false,
-            bottomSize: 'mini',
+            bottomSize: '',
             hwiUser: "",
             mainTitle: 'Hwi-cms',
             searchType: '1',
@@ -30,6 +30,18 @@ export const configStore = defineStore('hwiConfig', {
                 perPage: 10
             },
             appKey:"FHuxSdi27I",
+            searchConfig : {
+                addUrl: 'function',
+                addName: 'name',
+                dialogWidth:'60%',
+            },
+            itemsResultStr : {
+                current_page: 0,
+                data: [],
+                last_page:1,
+                per_page:10,
+                total:0,
+            }
         }
     },
     getters: {

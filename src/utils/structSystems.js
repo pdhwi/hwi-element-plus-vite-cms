@@ -6,6 +6,10 @@ const hwiSystems = {
             cn_name:'INPUT',
             name:'INPUT',
         },
+        editStruct: {
+            cn_name:'INPUT',
+            name:'INPUT',
+        },
         meaning: {
             id:'序号',
             cn_name:'角色名称',
@@ -15,7 +19,7 @@ const hwiSystems = {
             {
                 key:'cn_name',
                 value:'角色名称',
-                type:'text',
+                type:'input',
             },
             {
                 key:'name',
@@ -30,6 +34,11 @@ const hwiSystems = {
         struct: {
         },
         addStruct: {
+            cn_name:'INPUT',
+            name:'INPUT',
+            pid:'SELECT',
+        },
+        editStruct: {
             cn_name:'INPUT',
             name:'INPUT',
             pid:'SELECT',

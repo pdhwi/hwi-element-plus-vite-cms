@@ -2,14 +2,10 @@
   <div class="demo-collapse">
     <el-collapse v-model="activeName" accordion>
       <el-collapse-item title="功能区" name="1">
-
         <el-form :inline="true" :model="formInline" class="demo-form-inline">
-
           <el-form-item>
-            <el-button type="primary" v-if="config.addUrl" @click="addUrl">+新增数据</el-button>
+            <el-button type="primary" v-if="sConfig.addUrl" @click="addUrl">+新增数据</el-button>
           </el-form-item>
-
-
           <el-form-item label="Approved by">
             <el-input v-model="formInline.user" placeholder="Approved by" />
           </el-form-item>
@@ -32,9 +28,13 @@
 <script setup lang="ts" name="search">
 //search.vue-2023-04-10-16:17
 import { ref , reactive } from 'vue'
+import {configStore} from "~/store/hwiConfig"
+const hwiConfigStore = configStore()
+
 const props = defineProps({
   config: Object
 })
+let sConfig = props.config === undefined ? hwiConfigStore.searchConfig : props.config
 const emit = defineEmits(["addUrl"])
 const formInline = reactive({
   user: '',
@@ -47,10 +47,12 @@ const onSubmit = () => {
 const activeName = ref('1')
 
 function addUrl () {
-  if (props.config.addUrl === 'function') {
-    emit("addUrl",props.config.addUrl)
+ if (sConfig.addName === 'name') {
+    console.log( "err: searchConfig not set ")
+  }else if (sConfig.addUrl === 'function') {
+    emit("addUrl",sConfig.addUrl)
   } else {
-    routers.push({ path: props.config.addUrl })
+    routers.push({ path: sConfig.addUrl })
   }
 }
 

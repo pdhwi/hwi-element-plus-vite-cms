@@ -3,58 +3,109 @@
   <add-dialog ref="addDialogRef"
               :title="config.addName"
               :config="config"
-              :form="form"
+              :form="addForm"
               :dataStruct="dataStruct"
-              @submitFormDialog="submitFormDialog"
+              @submitFormDialog="addFormDialog"
   />
+  <hwi-tables v-if="result.itemsResult.current_page  " key="hwiTable"
+              :itemsResult="result.itemsResult"
+              :dataStruct="dataStruct"
+              :changeObj="updateRoles"
+              @showItem="showItem"
+  />
+
+  <edit-dialog ref="editDialogRef"
+               :title="config.editName"
+              :config="config"
+              :form="result.editForm"
+              :dataStruct="dataStruct"
+              @submitFormDialog="editFormDialog"
+  />
+
 </template>
 
 <script setup lang="ts" name="roles">
 //roles.vue-2023-04-19-16:36
 import {configStore} from "~/store/hwiConfig"
 import hwiSystems from "~/utils/structSystems"
-import { addRoles } from "~/api/systems"
+import { addRoles ,getRoles , updateRoles  } from "~/api/systems"
 import common from "~/utils/common"
+import EditDialog from "~/components/dialog/editDialog.vue";
 //初始化参数
 const hwiConfigStore = configStore()
-console.log(hwiConfigStore)
-
 const dataStruct = hwiSystems.RoleStruct
 let submitObj = addRoles
-let formStruct = dataStruct.addStruct
 let formMeaning = dataStruct.meaning
-let form = common.installForm(formStruct)
-
+let addForm = common.installForm(dataStruct.addStruct)
+let editForm = common.installForm(dataStruct.editStruct)
+let result=reactive({
+  itemsResult : hwiConfigStore.itemsResultStr,
+})
 //const changeObj = updateUser
 const addDialogRef = ref()
+const editDialogRef = ref()
 const searchData = JSON.parse(JSON.stringify(dataStruct.searchData))
-let config = {
-      addUrl: 'function',
-      addName: '新增角色',
-      dialogWidth:'60%',
-    };
+let config = hwiConfigStore.searchConfig
+config.addName = '新增角色'
+config.editName = '编辑角色'
+getList()
 
 function addUrl(aaa){
   addDialogRef.value.show(true)
 }
 
-function submitFormDialog(form){
-    console.log("submitFormDialog",form )
+function addFormDialog(form){
     addData(form)
 }
 
+function editFormDialog(form , id ){
+  updateData(form , id )
+}
+function resetItems(){
+  getList()
+}
 
-function addData(form){
-  addRoles(form).then(response => {
+function getList (){
+  let  data = searchData
+  data.page = hwiConfigStore.page
+  data.size = hwiConfigStore.size
+  getRoles(data).then(response => {
     let data = response.data
     let code = data.code
-    console.log(data)
     if (code !== hwiConfigStore.successCode ) {
       return false
     }
-
+    console.log("gitlist", data )
+    result.itemsResult = data.data
   })
+}
 
+function addData(form ){
+  addRoles(form).then(response => {
+    let data = response.data
+    let code = data.code
+    if (code !== hwiConfigStore.successCode ) {
+      return false
+    }
+    resetItems()
+  })
+}
+
+function updateData(form , id ){
+  updateRoles(form , id ).then(response => {
+    let data = response.data
+    let code = data.code
+    if (code !== hwiConfigStore.successCode ) {
+      return false
+    }
+    console.log(11111111111  , data )
+    resetItems()
+  })
+}
+
+function showItem(item ){
+  console.log("showItem--",item )
+  editDialogRef.value.show(true,item )
 }
 
 </script>
