@@ -39,7 +39,11 @@ service.interceptors.request.use(
             delete config.params.size
         }
         //增加签名
-        config.data = getSign(config.data,hwiConfigStore.appKey)
+        if(config.method ==='get'){
+            config.params = getSign(config.data,hwiConfigStore.appKey)
+        }else{
+            config.data = getSign(config.data,hwiConfigStore.appKey)
+        }
         /* if (config.method == 'get') {
           config.data = {hget:1}
         } */

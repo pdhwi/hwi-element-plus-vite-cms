@@ -36,7 +36,9 @@ export default defineConfig({
     },
   },
   plugins: [
-    vue(),
+    vue({
+      refTransform: true,
+    }),
     vueSetupExtend(),
     Components({
       // allow auto load markdown components under `./src/components/`

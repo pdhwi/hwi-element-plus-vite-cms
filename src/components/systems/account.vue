@@ -23,7 +23,10 @@
 //start
 import {ref} from "vue";
 import { ElTable } from 'element-plus'
+import {configStore} from "~/store/hwiConfig"
 
+let hwiConfigStore = configStore()
+let config = hwiConfigStore.searchConfig
 
 interface User {
   date: string1

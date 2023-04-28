@@ -1,15 +1,15 @@
 <template>
-  <el-form :model="form" label-width="120px">
+  <el-form :model="props.form" label-width="120px">
 
     <el-form-item
         v-for="(f, key,index) in formStruct"
         :label ="formMeaning[key]"
     >
-      <el-input v-if="formStruct[key] === 'INPUT'"  v-model="form[key]" />
+      <el-input v-if="formStruct[key] === 'INPUT'"  v-model="props.form[key]" />
     </el-form-item>
 
     <el-form-item>
-      <el-button type="primary" @click="onSubmit">创建</el-button>
+      <el-button type="primary" @click="onSubmit">保存</el-button>
     </el-form-item>
   </el-form>
 
@@ -20,16 +20,15 @@
 
 const props = defineProps({
   form:Object,
-  dataStruct:Object
+  dataStruct:Object,
+  addForm:Boolean
 })
 const emit = defineEmits(["submitForm"])
-
-let formStruct = props.dataStruct.addStruct
+let formStruct = props.addForm ? props.dataStruct.addStruct : props.dataStruct.editStruct
 let formMeaning = props.dataStruct.meaning
-let form = reactive(props.form)
 
 const onSubmit = () => {
-  emit("submitForm",form)
+  emit("submitForm",props.form)
 }
 
 let installForm = computed(()=>{
