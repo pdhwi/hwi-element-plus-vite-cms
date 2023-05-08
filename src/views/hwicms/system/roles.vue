@@ -22,6 +22,10 @@
               @submitFormDialog="editFormDialog"
   />
 
+  <hwi-pagination
+      v-if="result.itemsResult.current_page  "
+      :itemsResult="result.itemsResult"
+  />
 </template>
 
 <script setup lang="ts" name="roles">
@@ -31,6 +35,7 @@ import hwiSystems from "~/utils/structSystems"
 import { addRoles ,getRoles , updateRoles  } from "~/api/systems"
 import common from "~/utils/common"
 import EditDialog from "~/components/dialog/editDialog.vue";
+import rolesData from "~/utils/defaultData";
 //初始化参数
 const hwiConfigStore = configStore()
 const dataStruct = hwiSystems.RoleStruct
@@ -41,6 +46,11 @@ let editForm = common.installForm(dataStruct.editStruct)
 let result=reactive({
   itemsResult : hwiConfigStore.itemsResultStr,
 })
+
+if (hwiConfigStore.defaultData){
+  result.itemsResult = rolesData.data
+}
+
 //const changeObj = updateUser
 const addDialogRef = ref()
 const editDialogRef = ref()
@@ -75,7 +85,6 @@ function getList (){
     if (code !== hwiConfigStore.successCode ) {
       return false
     }
-    console.log("gitlist", data )
     result.itemsResult = data.data
   })
 }
@@ -98,7 +107,6 @@ function updateData(form , id ){
     if (code !== hwiConfigStore.successCode ) {
       return false
     }
-    console.log(11111111111  , data )
     resetItems()
   })
 }

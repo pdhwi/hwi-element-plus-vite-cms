@@ -26,7 +26,7 @@ export const configStore = defineStore('hwiConfig', {
             size: 10,
             hasBack: false,
             hwiPageConfig: {
-                selectList: [10, 20, 30, 40],
+                selectList: [10, 20, 30, 50],
                 perPage: 10
             },
             appKey:"FHuxSdi27I",
@@ -41,7 +41,8 @@ export const configStore = defineStore('hwiConfig', {
                 last_page:1,
                 per_page:10,
                 total:0,
-            }
+            },
+            defaultData:true,
         }
     },
     getters: {
