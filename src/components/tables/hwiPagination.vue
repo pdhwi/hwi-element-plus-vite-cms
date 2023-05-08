@@ -1,14 +1,14 @@
 <template>
   <div class=" hwi-pagination ">
     <el-pagination
-        v-model:current-page="currentPage4"
-        v-model:page-size="pageSize4"
-        :page-sizes="[10, 20, 30, 50]"
+        v-model:current-page="currentPage"
+        v-model:page-size="pageSize"
+        :page-sizes="pageSizeList"
         :small="small"
         :disabled="disabled"
         :background="true"
         layout="->,total, sizes, prev, pager, next, jumper"
-        :total="400"
+        :total="total"
         @size-change="handleSizeChange"
         @current-change="handleCurrentChange"
     />
@@ -18,9 +18,19 @@
 <script setup lang="ts" name="hwiPagination">
 //hwiPagination.vue-2023-04-10-17:40
 import {ref} from "vue";
+import {configStore} from "~/store/hwiConfig";
 
-const currentPage4 = ref(4)
-const pageSize4 = ref(100)
+const hwiConfigStore = configStore()
+const props = defineProps({
+  itemsResult: Object
+})
+console.log("page: ", props.itemsResult)
+const pageSizeList = hwiConfigStore.hwiPageConfig.selectList
+const currentPage = ref(props.itemsResult.current_page)
+const pageSize = ref(props.itemsResult.per_page)
+const total = ref(props.itemsResult.total)
+
+
 const small = ref(false)
 const background = ref(false)
 const disabled = ref(false)

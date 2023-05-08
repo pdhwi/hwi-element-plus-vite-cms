@@ -71,7 +71,6 @@ let state = reactive({
   topItems: props.dataStruct.topItems,
   tableItems: tableResult.data
 })
-console.log("top", state.topItems , tableResult,  tableResult.data )
 
 //初始化列表数据
 initTopItems()
@@ -100,7 +99,6 @@ function initTopItems(){
 }
 
 function  itemAddI() {
-  console.log("tableResult-addi", tableResult )
   var per_page = tableResult.per_page
   var current_page = tableResult.current_page
   var n = (current_page - 1) * per_page
@@ -111,7 +109,6 @@ function  itemAddI() {
 }
 
 function handleEdit(index , item ){
-  console.log( index , item )
   emit("showItem",item )
 }
 
@@ -125,7 +122,6 @@ const handleSelectionChange = (val) => {
 
 function changeField (item, value) {
 
-  console.log(tableResult , props.itemsResult)
   return
   if(state.changeCallBack ){
     emit("changeCallBack",item )
@@ -139,7 +135,6 @@ function changeField (item, value) {
     if (code !== hwiConfigStore.successCode ) {
       return false
     }
-    console.log(data)
   })
 
 
@@ -164,9 +159,6 @@ function changeField (item, value) {
 watch(
     () => props.itemsResult,
     (newVal, oldVal) => {
-      console.log('监听基本类型数据testStr')
-      console.log('new', newVal)
-      console.log('old', oldVal)
       tableResult = newVal
       state.tableItems = tableResult.data
       itemAddI()

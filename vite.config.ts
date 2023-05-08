@@ -157,4 +157,11 @@ export default defineConfig({
     cors: true,
     host: "0.0.0.0",
   },
+  build: {
+    reportCompressedSize: false,
+    sourcemap: false,
+    commonjsOptions: {
+      ignoreTryCatch: false,
+    },
+  },
 })
