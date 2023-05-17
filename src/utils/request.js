@@ -31,22 +31,19 @@ service.interceptors.request.use(
             config.headers['Authorization'] = token
         }
         // 转换分页字段
-        let params = config.params
+        /*let params = config.params
         if (undefined !== params && params.size !== undefined) {
             config.params[ hwiConfigStore.pageKey ] = params.page
             config.params[ hwiConfigStore.sizeKey ] = params.size
             delete config.params.page
             delete config.params.size
-        }
+        }*/
         //增加签名
         if(config.method ==='get'){
-            config.params = getSign(config.data,hwiConfigStore.appKey)
+            config.params = getSign(config.params,hwiConfigStore.appKey)
         }else{
             config.data = getSign(config.data,hwiConfigStore.appKey)
         }
-        /* if (config.method == 'get') {
-          config.data = {hget:1}
-        } */
         return config
     },
     error => {

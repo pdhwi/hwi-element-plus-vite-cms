@@ -7,6 +7,7 @@
     <auto-form  :form="state.form"
                 :dataStruct="props.dataStruct"
                 :addForm="false"
+                :selectObj="props.selectObj"
                 @submitForm="submitForm"
     > </auto-form>
   </el-dialog>
@@ -23,20 +24,21 @@ const props = defineProps({
   title:String,
   config:Object,
   form:Object,
-  dataStruct:Object
+  dataStruct:Object,
+  selectObj:Object
 })
 
 let state =  reactive({
   form:  props.form
 })
 
-function show( show , item  ){
+function show( show:boolean , item:object  ){
   state.form = JSON.parse(JSON.stringify(item))
   id = item.id
   dialogVisible.value = show
 }
 
-function submitForm(data){
+function submitForm(data:object){
   emit("submitFormDialog",data , id )
 }
 

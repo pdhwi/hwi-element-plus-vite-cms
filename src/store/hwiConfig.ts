@@ -20,8 +20,8 @@ export const configStore = defineStore('hwiConfig', {
             hwiUser: "",
             mainTitle: 'Hwi-cms',
             searchType: '1',
-            pageKey: 'pageIndex',
-            sizeKey: 'pageSize',
+            pageKey: 'page',
+            sizeKey: 'size',
             page: 1,
             size: 10,
             hasBack: false,
@@ -30,9 +30,10 @@ export const configStore = defineStore('hwiConfig', {
                 perPage: 10
             },
             appKey:"FHuxSdi27I",
-            searchConfig : {
+            addDataConfig : {
                 addUrl: 'function',
                 addName: 'name',
+                editName: 'name',
                 dialogWidth:'60%',
             },
             itemsResultStr : {
@@ -42,7 +43,7 @@ export const configStore = defineStore('hwiConfig', {
                 per_page:10,
                 total:0,
             },
-            defaultData:true,
+            defaultData:false,
         }
     },
     getters: {

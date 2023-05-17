@@ -2,21 +2,26 @@
   <div class="demo-collapse">
     <el-collapse v-model="activeName" accordion>
       <el-collapse-item title="功能区" name="1">
-        <el-form :inline="true" :model="formInline" class="demo-form-inline">
+        <el-form :inline="true" :model="props.searchData" class="demo-form-inline">
           <el-form-item>
             <el-button type="primary" v-if="sConfig.addUrl" @click="addUrl">+新增数据</el-button>
           </el-form-item>
-          <el-form-item label="Approved by">
-            <el-input v-model="formInline.user" placeholder="Approved by" />
+
+          <el-form-item
+              v-for="(item, index) in state.searchForm"
+              :label="item.name"
+          >
+            <el-input  v-if="item.type === 'INPUT'" :size="hwiConfigStore.bottomSize"  v-model="props.searchData[item.key]" :placeholder="item.name" />
           </el-form-item>
-          <el-form-item label="Activity zone">
-            <el-select v-model="formInline.region" placeholder="Activity zone">
+
+<!--          <el-form-item label="Activity zone">
+            <el-select placeholder="Activity zone">
               <el-option label="Zone one" value="shanghai" />
               <el-option label="Zone two" value="beijing" />
             </el-select>
-          </el-form-item>
+          </el-form-item>-->
           <el-form-item>
-            <el-button type="primary" @click="onSubmit">Query</el-button>
+            <el-button type="primary" @click="onSubmit">查询</el-button>
           </el-form-item>
         </el-form>
 
@@ -27,22 +32,26 @@
 
 <script setup lang="ts" name="search">
 //search.vue-2023-04-10-16:17
-import { ref , reactive } from 'vue'
+import {ref, reactive, PropType} from 'vue'
 import {configStore} from "~/store/hwiConfig"
+import {HwiSysStruct} from "~/utils/structSystems";
 const hwiConfigStore = configStore()
 
 const props = defineProps({
-  config: Object
+  config: Object,
+  searchData:Object,
+  dataStruct:Object as PropType<HwiSysStruct>,
+  selectObj:Object
 })
 let sConfig = props.config === undefined ? hwiConfigStore.searchConfig : props.config
-const emit = defineEmits(["addUrl"])
-const formInline = reactive({
-  user: '',
-  region: '',
+const  meaingStr = props.dataStruct.meaning
+const emit = defineEmits(["addUrl","searchItems"])
+const state = reactive({
+  searchForm:props.dataStruct?.searchfrom
 })
 
 const onSubmit = () => {
-  console.log('submit!',formInline)
+  emit("searchItems")
 }
 const activeName = ref('1')
 

@@ -60,11 +60,11 @@ const props = defineProps({
 })
 
 let tableResult:HwiTableStruct.Result = props.itemsResult
-let tableHeight = ref(500)
+let tableHeight = ref(700)
 const multipleTableRef = ref<InstanceType<typeof ElTable>>()
 const multipleSelection = ref([])
 const bottonSize = hwiConfigStore.bottomSize
-const emit = defineEmits(["changeCallBack","showItem"])
+const emit = defineEmits(["changeCallBack","showItem","resetItems", "delObj"])
 
 //初始化展示变量
 let state = reactive({
@@ -113,7 +113,8 @@ function handleEdit(index , item ){
 }
 
 function handleDelete(index , item ){
-  console.log( index , item )
+  emit("delItem",item )
+
 }
 
 const handleSelectionChange = (val) => {
@@ -121,9 +122,7 @@ const handleSelectionChange = (val) => {
 }
 
 function changeField (item, value) {
-
-  return
-  if(state.changeCallBack ){
+  if(props.changeCallBack ){
     emit("changeCallBack",item )
     return
   }
@@ -135,25 +134,9 @@ function changeField (item, value) {
     if (code !== hwiConfigStore.successCode ) {
       return false
     }
+
+    emit("changeCallBack",item )
   })
-
-
-  /*if (this.customUpd) {
-    this.$emit('customUpdate', { item, value })
-    return
-  }*/
- /* if (undefined === this.changeObj) return
-  var send_data = {}
-  send_data[value] = item[value]
-  let the = this
-
-  this.changeObj(send_data, item.id).then(response => {
-    var data = response.data
-    if (this.$store.state.successCode === data.code) {
-      the.$store.dispatch('setpage', 1)
-      the.resetItem()
-    }
-  })*/
 }
 
 watch(
@@ -164,28 +147,6 @@ watch(
       itemAddI()
     }
 )
-
-
-
-/*
-onMounted(()=>{
-  console.log( "----onoooo--", props.result)
-})
-
-/!*
-function  initList(list){
-  console.log(list,"-----2222222222----")
-  for (const listKey in list) {
-      console.log(listKey , list[listKey])
-  }
-}
-*!/
-
-
-watch(props.result,(newVal,oldVal) => {
-  console.log('值改变了',newVal,oldVal)
-})
-*/
 
 </script>
 <style lang="scss" scoped>

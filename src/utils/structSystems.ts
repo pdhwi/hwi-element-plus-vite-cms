@@ -1,5 +1,21 @@
+export interface HwiSysStruct {
+    struct:Object,
+    addStruct:Object,
+    editStruct:Object,
+    meaning:Object,
+    topItems:Array<any>,
+    searchfrom:Array<any>,
+    searchData:Object,
+}
+
+export interface HwiSelectStruct {
+    label: string
+    value: number | string | boolean
+    disabled: boolean
+}
+
 const hwiSystems = {
-    RoleStruct:{
+     RoleStruct: {
         struct: {
         },
         addStruct: {
@@ -27,7 +43,25 @@ const hwiSystems = {
                 type:'text',
             }
         ],
+        searchfrom: [
+            /* {
+                key:'projectIds',
+                name:'项目',
+                value:0,
+                type:'SELECT',
+                selectArr:[
+                    {key:0,v:'全部'},
+                ],
+           }, */
+            {
+                key: 'cn_name',
+                name: '角色名',
+                value: '',
+                type: 'INPUT'
+            }
+        ],
         searchData: {
+            cn_name:'',
         }
     },
     permissionStruct:{
@@ -86,6 +120,11 @@ const hwiSystems = {
         struct: {
         },
         addStruct: {
+            name:'INPUT',
+            password:'INPUT',
+            roles:'CHECKBOX',
+        },
+        editStruct: {
             name:'INPUT',
             password:'INPUT',
             roles:'CHECKBOX',

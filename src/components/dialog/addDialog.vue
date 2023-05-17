@@ -4,9 +4,10 @@
              :width="config.dialogWidth"
              @close='handleClose'
              draggable>
-        <auto-form  :form="props.form"
+        <auto-form  :form="state.form"
                     :dataStruct="props.dataStruct"
                     :addForm="true"
+                    :selectObj="props.selectObj"
                     @submitForm="submitForm"
         > </auto-form>
   </el-dialog>
@@ -22,11 +23,16 @@ const props = defineProps({
   title:String,
   config:Object,
   form:Object,
-  dataStruct:Object
+  dataStruct:Object,
+  selectObj:Object
 })
 
+let state =  reactive({
+  form:  props.form
+})
 
 function show( show  ){
+  state.form = JSON.parse(JSON.stringify(props.form))
   dialogVisible.value = show
 }
 

@@ -1,14 +1,14 @@
 <template>
   <div class=" hwi-pagination ">
     <el-pagination
-        v-model:current-page="currentPage"
-        v-model:page-size="pageSize"
-        :page-sizes="pageSizeList"
+        v-model:current-page="state.currentPage"
+        v-model:page-size="state.pageSize"
+        :page-sizes="state.pageSizeList"
         :small="small"
         :disabled="disabled"
         :background="true"
         layout="->,total, sizes, prev, pager, next, jumper"
-        :total="total"
+        :total="state.total"
         @size-change="handleSizeChange"
         @current-change="handleCurrentChange"
     />
@@ -24,23 +24,45 @@ const hwiConfigStore = configStore()
 const props = defineProps({
   itemsResult: Object
 })
-console.log("page: ", props.itemsResult)
-const pageSizeList = hwiConfigStore.hwiPageConfig.selectList
-const currentPage = ref(props.itemsResult.current_page)
-const pageSize = ref(props.itemsResult.per_page)
-const total = ref(props.itemsResult.total)
+const emit = defineEmits(["resetItems"])
 
+let state = reactive({
+  pageSizeList:hwiConfigStore.hwiPageConfig.selectList,
+  currentPage:0,
+  pageSize:0,
+  total:0,
+})
+
+setPage(props.itemsResult)
 
 const small = ref(false)
 const background = ref(false)
 const disabled = ref(false)
 
+
+function setPage(pageResult:HwiTableStruct.Result ){
+  state.currentPage = pageResult.current_page
+  state.pageSize = pageResult.per_page
+  state.total = pageResult.total
+}
+
+
 const handleSizeChange = (val: number) => {
-  console.log(`${val} items per page`)
+  hwiConfigStore.size = val
+  emit("resetItems" )
 }
 const handleCurrentChange = (val: number) => {
-  console.log(`current page: ${val}`)
+  hwiConfigStore.page = val
+  emit("resetItems" )
 }
+
+watch(
+    () => props.itemsResult,
+    (newVal, oldVal) => {
+      setPage(newVal)
+    }
+)
+
 
 </script>
 <style lang="scss" scoped>

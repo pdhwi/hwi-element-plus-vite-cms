@@ -6,6 +6,13 @@
         :label ="formMeaning[key]"
     >
       <el-input v-if="formStruct[key] === 'INPUT'"  v-model="props.form[key]" />
+
+      <el-checkbox-group v-else-if="formStruct[key]  === 'CHECKBOX'"  v-model="props.form[key]" >
+        <el-checkbox
+            v-for="checkbox_item in selectObj[key]"
+            :label="checkbox_item.label"
+        >{{checkbox_item.value}}</el-checkbox>
+      </el-checkbox-group>
     </el-form-item>
 
     <el-form-item>
@@ -21,8 +28,10 @@
 const props = defineProps({
   form:Object,
   dataStruct:Object,
-  addForm:Boolean
+  addForm:Boolean,
+  selectObj:Object
 })
+
 const emit = defineEmits(["submitForm"])
 let formStruct = props.addForm ? props.dataStruct.addStruct : props.dataStruct.editStruct
 let formMeaning = props.dataStruct.meaning
