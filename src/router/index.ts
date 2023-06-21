@@ -35,6 +35,12 @@ const routes = [
                     meta: { title: 'roles', icon: 'dashboard', noCache: true }
                 },
                 {
+                    path: '/permissions',
+                    component: () => import('~/views/hwicms/system/permissions.vue'),
+                    name: 'permissions',
+                    meta: { title: 'permissions', icon: 'dashboard', noCache: true }
+                },
+                {
                     path: '/users',
                     component: () => import('~/views/hwicms/system/users.vue'),
                     name: 'users',

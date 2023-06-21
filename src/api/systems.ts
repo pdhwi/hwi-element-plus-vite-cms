@@ -76,6 +76,14 @@ export function addPermissions( data ) {
     })
 }
 
+export function delPermissions( id ) {
+    return request({
+        url: 'api/permissions/'+id,
+        method: 'delete',
+    })
+}
+
+
 
 export function getUsers( data ) {
     return request({

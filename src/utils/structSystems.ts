@@ -70,24 +70,29 @@ const hwiSystems = {
         addStruct: {
             cn_name:'INPUT',
             name:'INPUT',
-            pid:'SELECT',
+            p_id:'SELECT',
         },
         editStruct: {
             cn_name:'INPUT',
             name:'INPUT',
-            pid:'SELECT',
+            p_id:'SELECT',
         },
         meaning: {
             id:'序号',
             cn_name:'权限名称',
             name:'name',
-            pid:'上级ID',
+            p_id:'上级分类',
         },
         topItems: [
             {
+                key:'p_id_name',
+                value:'上级分类',
+                type:'text',
+            },
+            {
                 key:'name',
                 value:'name',
-                type:'INPUT',
+                type:'input',
             },{
                 key:'cn_name',
                 value:'权限名称',
@@ -102,10 +107,10 @@ const hwiSystems = {
                 type:'INPUT',
             },
             {
-                key:'pid',
-                name:'一级分类',
+                key:'p_id',
+                name:'上级分类',
                 selectArr:[
-                    {key:'',v:'全部'},
+                    {label:'全部',value:''},
                 ],
                 value:0,
                 type:'SELECT',
@@ -113,7 +118,7 @@ const hwiSystems = {
         ],
         searchData: {
             cn_name:'',
-            pid:'',
+            p_id:'',
         }
     },
     usersStruct:{

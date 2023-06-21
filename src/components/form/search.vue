@@ -12,6 +12,21 @@
               :label="item.name"
           >
             <el-input  v-if="item.type === 'INPUT'" :size="hwiConfigStore.bottomSize"  v-model="props.searchData[item.key]" :placeholder="item.name" />
+
+            <el-select
+                v-if="item.type === 'SELECT'"
+                :size="hwiConfigStore.bottomSize"
+                v-model="props.searchData[item.key]"
+                :placeholder="item.name"
+            >
+              <el-option
+                  v-for="(selectItem, sindex) in item.selectArr"
+                  :label="selectItem.label"
+                  :value="selectItem.value"
+                  :key="sindex"
+              ></el-option>
+            </el-select>
+
           </el-form-item>
 
 <!--          <el-form-item label="Activity zone">

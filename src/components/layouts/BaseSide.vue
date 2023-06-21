@@ -24,6 +24,7 @@
       </template>
       <el-menu-item-group >
         <el-menu-item index="/roles">角色管理</el-menu-item>
+        <el-menu-item index="/permissions">权限管理</el-menu-item>
         <el-menu-item index="/users">用户管理</el-menu-item>
       </el-menu-item-group>
     </el-sub-menu>

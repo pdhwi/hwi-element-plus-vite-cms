@@ -13,6 +13,16 @@
             :label="checkbox_item.label"
         >{{checkbox_item.value}}</el-checkbox>
       </el-checkbox-group>
+
+      <el-select v-else-if="formStruct[key]  === 'SELECT'"   v-model="props.form[key]" filterable placeholder="请选择" >
+        <el-option
+            v-for="select_item in props.selectObj[key]"
+            :key="select_item.label"
+            :label="select_item.label"
+            :value="select_item.value" >
+        </el-option>
+      </el-select>
+
     </el-form-item>
 
     <el-form-item>
