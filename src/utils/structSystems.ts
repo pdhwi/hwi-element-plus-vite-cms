@@ -71,6 +71,7 @@ const hwiSystems = {
             cn_name:'INPUT',
             name:'INPUT',
             p_id:'SELECT',
+            type:'SELECT',
         },
         editStruct: {
             cn_name:'INPUT',
@@ -82,6 +83,8 @@ const hwiSystems = {
             cn_name:'权限名称',
             name:'name',
             p_id:'上级分类',
+            type:'类型',
+
         },
         topItems: [
             {
@@ -119,6 +122,7 @@ const hwiSystems = {
         searchData: {
             cn_name:'',
             p_id:'',
+            type:0,
         }
     },
     usersStruct:{

@@ -125,3 +125,11 @@ export function getUsersById( id ) {
         noPrompting: 1
     })
 }
+
+export function setRPermissions( data , id ) {
+    return request({
+        url: 'api/set_roles_permissions/'+id,
+        method: 'post',
+        data: data,
+    })
+}

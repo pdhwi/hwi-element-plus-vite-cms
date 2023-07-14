@@ -63,6 +63,7 @@ config.editName = '编辑权限'
 
 let addForm = common.installForm(dataStruct.addStruct)
 addForm.p_id = 0
+addForm.type = 0
 
 let result=reactive({
   itemsResult : hwiConfigStore.itemsResultStr,
@@ -70,6 +71,10 @@ let result=reactive({
   selectObj:{
     'p_id':[
       {label:'顶级菜单',value:0}
+    ],
+    'type':[
+      {label:'普通',value:0},
+      {label:'restfulApi ',value:1},
     ]
   }
 })

@@ -22,8 +22,8 @@
               @delItem="delItem"
   />
 
-  <edit-dialog ref="editDialogRef"
-               :title="config.editName"
+  <roles-edit ref="editDialogRef"
+              :title="config.editName"
               :config="config"
               :form="{}"
               :dataStruct="dataStruct"
@@ -46,6 +46,7 @@ import common from "~/utils/common"
 import EditDialog from "~/components/dialog/editDialog.vue";
 import rolesData from "~/utils/defaultData";
 import { ElMessageBox } from 'element-plus'
+import RolesEdit from "~/views/hwicms/system/rolesEdit.vue";
 
 //初始化参数-获取items--start-- 自行修改const 变量
 const hwiConfigStore = configStore()
