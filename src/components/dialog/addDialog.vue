@@ -30,7 +30,6 @@ const props = defineProps({
 let state =  reactive({
   form:  props.form
 })
-console.log(state.form)
 function show( show  ){
   state.form = JSON.parse(JSON.stringify(props.form))
   dialogVisible.value = show

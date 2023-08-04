@@ -60,6 +60,7 @@ const editDialogRef = ref()
 let config = hwiConfigStore.addDataConfig
 config.addName = '新增角色'
 config.editName = '编辑角色'
+hwiConfigStore.page = 1
 
 let addForm = common.installForm(dataStruct.addStruct)
 let result=reactive({

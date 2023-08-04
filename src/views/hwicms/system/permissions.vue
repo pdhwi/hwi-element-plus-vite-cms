@@ -21,6 +21,7 @@
               @showItem="showItem"
               @resetItems="resetItems"
               @delItem="delItem"
+              :tabHiddenShowBtn="true"
   />
 
   <edit-dialog ref="editDialogRef"
@@ -60,6 +61,7 @@ const editDialogRef = ref()
 let config = hwiConfigStore.addDataConfig
 config.addName = '新增权限'
 config.editName = '编辑权限'
+hwiConfigStore.page = 1
 
 let addForm = common.installForm(dataStruct.addStruct)
 addForm.p_id = 0
@@ -105,7 +107,6 @@ function resetItems(){
 }
 
 function searchItems(){
-  console.log(result.searchData)
   hwiConfigStore.page = 1
   getItems()
 }
@@ -183,7 +184,6 @@ function getAllPItems (){
       return false
     }
     //填充数据
-    console.log(dataStruct ,"dataStruct")
     dataStruct.searchfrom.forEach(sF => {
       if('p_id' === sF['key']){
         data.data.forEach(i => {

@@ -78,7 +78,6 @@ function submitForm(data:object){
 }
 
 function  handleClose(){
-  console.log("handleClose----")
 }
 
 
@@ -86,17 +85,18 @@ let formStruct = props.addForm ? props.dataStruct.addStruct : props.dataStruct.e
 let formMeaning = props.dataStruct.meaning
 
 const onSubmit = () => {
+  /*let cKeys = treeRef.value!.getCheckedKeys(false)
+  let fKeys = treeRef.value!.getHalfCheckedKeys()
+  let keys = cKeys.concat(fKeys)*/
   let keys = treeRef.value!.getCheckedKeys(false)
 
   let form = {
       'id':id,
-      'keys':keys.join(",")
+      'keys':keys.join(",")+",asdsa,12312312,2222,2fs,b2f"
   }
-  console.log(form )
   setRPermissions(form,id).then(response => {
     let data = response.data
     let code = data.code
-    console.log(data)
     if (code !== hwiConfigStore.successCode ) {
       return false
     }
@@ -113,7 +113,6 @@ const activeName = ref('permissions')
 const treeRef = ref<InstanceType<typeof ElTree>>()
 
 const handleClick = (tab: TabsPaneContext, event: Event) => {
-  console.log(tab, event)
 }
 
 //permissions

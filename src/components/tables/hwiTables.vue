@@ -25,15 +25,19 @@
         <span v-else v-html="scope.row[topItem.key]" ></span>
       </template>
     </el-table-column>
-    <el-table-column label="Operations">
+    <el-table-column label="操作"
+      v-if="!tabHiddenAction"
+    >
       <template #default="scope">
         <el-button size="small" @click="handleEdit(scope.$index, scope.row)"
+            v-if="!tabHiddenShowBtn"
         >查看</el-button
         >
         <el-button
             size="small"
             type="danger"
             @click="handleDelete(scope.$index, scope.row)"
+            v-if="!tabHiddenDelBtn"
         >删除</el-button
         >
       </template>
@@ -52,19 +56,34 @@ import {addRoles} from "~/api/systems";
 let hwiConfigStore = configStore()
 let config = hwiConfigStore.searchConfig
 let indexEx = ref(false)
+let tabHiddenShowBtn = false
+let tabHiddenDelBtn = false
+let tabHiddenAction = false
+
 const props = defineProps({
   itemsResult: Object,
   dataStruct: Object,
   changeCallBack:Boolean,
   changeObj:Function,
+  tabHiddenShowBtn:Boolean,
+  tabHiddenDelBtn:Boolean,
+  tabHiddenAction:Boolean,
+
 })
+
+//显示隐藏操作按钮
+if( props.tabHiddenShowBtn ) tabHiddenShowBtn = true;
+if( props.tabHiddenDelBtn ) tabHiddenDelBtn = true;
+if( props.tabHiddenAction ) tabHiddenAction = true;
+
+
 
 let tableResult:HwiTableStruct.Result = props.itemsResult
 let tableHeight = ref(700)
 const multipleTableRef = ref<InstanceType<typeof ElTable>>()
 const multipleSelection = ref([])
 const bottonSize = hwiConfigStore.bottomSize
-const emit = defineEmits(["changeCallBack","showItem","resetItems", "delObj"])
+const emit = defineEmits(["changeCallBack","showItem","resetItems", "delItem"])
 
 //初始化展示变量
 let state = reactive({
