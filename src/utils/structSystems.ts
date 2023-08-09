@@ -95,7 +95,7 @@ const hwiSystems = {
             {
                 key:'name',
                 value:'name',
-                type:'input',
+                type:'text',
             },{
                 key:'cn_name',
                 value:'权限名称',

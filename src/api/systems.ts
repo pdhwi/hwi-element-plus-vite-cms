@@ -133,3 +133,11 @@ export function setRPermissions( data , id ) {
         data: data,
     })
 }
+
+export function getRPermissions( id ) {
+    return request({
+        url: 'api/get_roles_permissions/'+id,
+        method: 'get',
+        noPrompting: 1
+    })
+}

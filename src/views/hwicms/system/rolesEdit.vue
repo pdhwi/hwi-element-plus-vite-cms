@@ -40,7 +40,7 @@
 
 <script setup lang="ts" name="rolesEdit">
 //rolesEdit.vue-2023-06-25-15:02
-import {getPermissions, setRPermissions} from "~/api/systems"
+import {getPermissions, setRPermissions , getRPermissions } from "~/api/systems"
 import {configStore} from "~/store/hwiConfig";
 import { ElTree } from 'element-plus'
 import type Node from 'element-plus/es/components/tree/src/model/node'
@@ -71,6 +71,7 @@ function show( show:boolean , item:object  ){
   id = item.id
   dialogVisible.value = show
   getPTree()
+  getRPTree()
 }
 
 function submitForm(data:object){
@@ -92,7 +93,7 @@ const onSubmit = () => {
 
   let form = {
       'id':id,
-      'keys':keys.join(",")+",asdsa,12312312,2222,2fs,b2f"
+      'keys':keys.join(",")
   }
   setRPermissions(form,id).then(response => {
     let data = response.data
@@ -132,6 +133,31 @@ function getPTree (){
     state.permissions = data.data
   })
 }
+
+function getRPTree (){
+  let  data = {
+    'tree':1,
+    'all':1
+  }
+
+  getRPermissions(id).then(response => {
+    let data = response.data
+    let code = data.code
+    if (code !== hwiConfigStore.successCode ) {
+      return false
+    }
+    //填充数据
+    let pIds =[]
+    data.data.forEach( p => {
+        pIds.push(p[3])
+    })
+
+    treeRef.value!.setCheckedKeys(pIds)
+  })
+}
+
+
+
 
 // tree
 interface Tree {
