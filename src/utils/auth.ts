@@ -17,7 +17,7 @@ export function removeToken() {
 
 export function getUser() {
     var user =  Cookies.get(UserKey);
-    return user?JSON.parse( user ):{};
+    return user?JSON.parse( user ):'';
 }
 
 export function setUser(token) {

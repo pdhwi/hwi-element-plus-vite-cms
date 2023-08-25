@@ -1,6 +1,9 @@
 
 import {createRouter,createWebHashHistory} from "vue-router";
 
+import {getUser} from "~/utils/auth";
+import {configStore} from "~/store/hwiConfig"
+
 // 1. 定义路由组件.
 // 也可以从其他文件导入
 
@@ -58,6 +61,30 @@ const router = createRouter({
     // 4. 内部提供了 history 模式的实现。为了简单起见，我们在这里使用 hash 模式。
     history: createWebHashHistory(),
     routes, // `routes: routes` 的缩写
+})
+
+/*router.beforeEach((to,form,next)=>{
+    console.log(to , form  , next)
+    /!*if(to.name !== 'login'){
+        next('/login')
+    }*!/
+    return true
+})*/
+
+router.beforeResolve(to => {
+    console.log(to )
+    let hwiConfigStore = configStore()
+
+    let freeRoute = hwiConfigStore.freeRoute
+    console.log(  freeRoute[to.name] ," freeRoute[to.name]")
+    if( freeRoute[to.name] === 1 ){
+        return true
+    }
+
+    //验证用户
+    let user = getUser()
+    console.log(user)
+    return true
 })
 
 export default router

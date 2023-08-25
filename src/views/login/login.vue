@@ -71,8 +71,7 @@
         return false
       }
       setToken(data.data.remember_token)
-      data.data.name = data.data.account
-      setUser(data.data)
+      setUser( JSON.stringify( data.data))
       hwiConfigStore.hwiUser = data.data
       router.push('index')
     })

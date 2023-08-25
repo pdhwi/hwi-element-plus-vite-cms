@@ -27,7 +27,7 @@ service.interceptors.request.use(
             // 让每个请求携带token-- ['X-Token']为自定义key 请根据实际情况自行修改
             config.headers['Accept'] = 'application/json'
             let token = getToken()
-            token = token ? 'Bearer ' + getToken() : ''
+            token = token ? 'Bearer ' + token : ''
             config.headers['Authorization'] = token
         }
         // 转换分页字段
@@ -78,7 +78,7 @@ service.interceptors.response.use(
                 case 401:
                     if (hwiConfigStore.routerPath !== '/login') { action = '/login' }
                     break
-                case 20401:
+                case 41001:
                     if (hwiConfigStore.routerPath !== '/login') { action = '/login' }
                     ElMessage({
                         message: message,
