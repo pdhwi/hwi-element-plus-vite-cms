@@ -6,10 +6,12 @@ import router from '~/router'
 import common from '~/utils/common'
 import getSign from '~/utils/sign'
 
+const hwiConfigStore = configStore()
 
 // create an axios instance
 const service = axios.create({
-    baseURL: "http://localhost:8000/", // api 的 base_url
+    baseURL: hwiConfigStore.baseURL, // api 的 base_url
+    //baseURL: "http://localhost:8000/", // api 的 base_url
     //baseURL: window.Hwi.baseURL, // api 的 base_url
     timeout: 50000 // request timeout
 })
