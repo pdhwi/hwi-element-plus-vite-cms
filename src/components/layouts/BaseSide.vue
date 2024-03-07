@@ -1,8 +1,12 @@
 <template>
-  <el-radio-group v-model="isCollapse" style="margin-bottom: 20px">
-    <el-radio-button :label="false">expand</el-radio-button>
-    <el-radio-button :label="true">collapse</el-radio-button>
-  </el-radio-group>
+
+  <el-row>
+    <el-col :span="8" :offset="8"  >
+      <Hamburger title="展开/收缩" :toggle-click="toggleSideBar" :is-active="isCollapse" class="hamburger-container"/>
+    </el-col>
+  </el-row>
+
+
   <el-menu
       default-active="2"
       class="el-menu-vertical-demo"
@@ -47,6 +51,7 @@
 
 <script lang="ts" setup>
 import { ref } from 'vue'
+
 import {
   Document,
   Menu as IconMenu,
@@ -62,6 +67,12 @@ const handleOpen = (key: string, keyPath: string[]) => {
 const handleClose = (key: string, keyPath: string[]) => {
   console.log(key, keyPath)
 }
+
+function toggleSideBar(){
+  isCollapse.value = isCollapse.value?false:true
+  console.log(isCollapse.value , isCollapse.value?false:true )
+}
+
 </script>
 
 <style>
