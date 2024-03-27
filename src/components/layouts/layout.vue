@@ -19,12 +19,23 @@
 </template>
 
 <script setup lang="ts" name="layout">
-//roles.vue-2023-04-19-16:36
+//layout.vue-2023-04-19-16:36
 
+//设置页面Class
 </script>
 
 <style scoped>
   .hwi-layout .el-aside{
     width: auto;
   }
+
+  .hwi-layout .hwi-pagination {
+    position: absolute;
+    bottom: 15px;
+    background-color: #fff;
+    z-index: 99;
+    border-top: 1px solid #e4e7ed;
+    width: 96%;
+  }
+
 </style>
