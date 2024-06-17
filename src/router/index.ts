@@ -49,6 +49,13 @@ const routes = [
                     name: 'users',
                     meta: { title: 'users', icon: 'dashboard', noCache: true }
                 },
+                {
+                    path: '/hwiFormDemo',
+                    component: () => import('~/views/demo/hwiFormDemo.vue'),
+                    name: 'hwiFormDemo',
+                    meta: { title: 'hwiFormDemo', icon: 'dashboard', noCache: true }
+                },
+
             ]
         },
         { path: "/:pathMath(.*)", redirect: '/404', hidden: true , meta: { lookFree: true } }

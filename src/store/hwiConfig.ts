@@ -43,7 +43,7 @@ export const configStore = defineStore('hwiConfig', {
                 per_page:10,
                 total:0,
             },
-            defaultData:false,
+            defaultData:true,
             freeRoute: {
                 'login': 1,
                 '404': 1,

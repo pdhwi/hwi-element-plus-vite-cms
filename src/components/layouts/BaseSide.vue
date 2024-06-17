@@ -36,9 +36,9 @@
 
 
 
-    <el-menu-item index="/bbb">
+    <el-menu-item index="/hwiFormDemo">
       <el-icon><HomeFilled /></el-icon>
-      <template #title>bbb</template>
+      <template #title>hwiFormDemo</template>
     </el-menu-item>
 
     <el-menu-item index="/login">
