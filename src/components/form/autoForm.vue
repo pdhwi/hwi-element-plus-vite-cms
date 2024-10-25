@@ -1,5 +1,5 @@
 <template>
-  <el-form :model="props.form" label-width="120px">
+  <el-form :model="props.form" class="hwi-autoForm" label-width="120px">
 
     <el-form-item
         v-for="(f, key,index) in formStruct"
@@ -14,12 +14,44 @@
         >{{checkbox_item.value}}</el-checkbox>
       </el-checkbox-group>
 
-      <el-select v-else-if="formStruct[key]  === 'SELECT'"   v-model="props.form[key]" filterable placeholder="请选择" >
+      <el-select v-else-if="formStruct[key]  === 'SELECT'"  v-model="props.form[key]" filterable placeholder="请选择"
+                 @change="selectCallBack(props.form[key], key )"
+      >
         <el-option
             v-for="select_item in props.selectObj[key]"
             :key="select_item.label"
             :label="select_item.label"
-            :value="select_item.value" >
+            :value="select_item.value"
+            :disabled="select_item.disabled"
+        >
+        </el-option>
+      </el-select>
+
+      <el-select v-else-if="formStruct[key]  === 'SELECT_MULTIPLE'"  multiple    v-model="props.form[key]" filterable placeholder="请选择"
+                 @change="selectCallBack(props.form[key], key )"
+         >
+        <el-option
+            v-for="select_item in props.selectObj[key]"
+            :key="select_item.label"
+            :label="select_item.label"
+            :value="select_item.value"
+            :disabled="select_item.disabled"
+        >
+        </el-option>
+      </el-select>
+
+      <el-select v-else-if="formStruct[key]  === 'SELECT_MULTIPLE_COLLAPSE'"   multiple  collapse-tags  collapse-tags-tooltip
+                 v-model="props.form[key]"
+                 filterable placeholder="请选择"
+                 @change="selectCallBack(props.form[key], key )"
+      >
+        <el-option
+            v-for="select_item in props.selectObj[key]"
+            :key="select_item.label"
+            :label="select_item.label"
+            :value="select_item.value"
+            :disabled="select_item.disabled"
+        >
         </el-option>
       </el-select>
 
@@ -39,7 +71,8 @@ const props = defineProps({
   form:Object,
   dataStruct:Object,
   addForm:Boolean,
-  selectObj:Object
+  selectObj:Object,
+  selectCallBackFunc:Function
 })
 
 const emit = defineEmits(["submitForm"])
@@ -53,7 +86,24 @@ const onSubmit = () => {
 let installForm = computed(()=>{
 
 })
+
+
+/**
+ * 下拉选项回调
+ * @param type
+ * @param val
+ */
+function selectCallBack(type , val ){
+  console.log(type,val )
+  if( props.selectCallBackFunc !== undefined ){
+    props.selectCallBackFunc(type , val )
+  }
+}
+
+
 </script>
 <style lang="scss" scoped>
-
+    .hwi-autoForm  .el-select{
+        width: 100%;
+      }
 </style>

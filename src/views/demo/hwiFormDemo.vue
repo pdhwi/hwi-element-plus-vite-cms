@@ -15,13 +15,21 @@
   <el-card >
     <template #header>
       <div class="card-header">
-        <span>demo2 简单下拉选项</span>
+        <span>demo2   SELECT 下拉选项</span>
       </div>
     </template>
+    <el-text >
+      form: 数据结构<br />
+      dataStruct: 数据表单<br />
+      addForm: 新增数据模式<br />
+      selectObj: select下拉选择内容数据<br />
+      selectCallBackFunc: select change callback 回调<br />
+    </el-text>
     <auto-form  :form="demoResult.demo2FormData"
                 :dataStruct="demoResult.demo2Str"
                 :addForm="true"
                 :selectObj="demoResult.demo2SelectObj"
+                :selectCallBackFunc="selectCallBackFunc"
     > </auto-form>
   </el-card>
 
@@ -41,17 +49,40 @@ let demoResult=reactive({
   demo2Str : hwiFromDemoData.demo2Struct,
   demo2FormData : hwiFromDemoData.demo2FormData,
   demo2SelectObj : {
-    'zone':[
-      {label:'全部',value:0},
+    'select':[
+      {label:'全部',value:0,},
       {label:'区域1',value:1},
       {label:'区域2',value:2},
-      {label:'区域3',value:3},
+      {label:'区域3',value:3,disabled:true},
+    ],
+    'multiple':[
+      {label:'全部',value:0,},
+      {label:'区域11',value:1},
+      {label:'区域22',value:2},
+      {label:'区域33',value:3},
+    ],
+
+    'multiple_collapse':[
+      {label:'全部',value:0,},
+      {label:'collapse1',value:1},
+      {label:'collapse2',value:2},
+      {label:'collapse3',value:3},
     ],
   }
 })
 
 
 console.log(hwiFromDemoData)
+
+/**
+ * 下拉回调
+ * @param val  变动后的值
+ * @param type 表单key值
+ */
+function  selectCallBackFunc(val , type   ){
+    console.log("selectCallBackFunc--", val , type )
+}
+
 
 </script>
 <style lang="scss" scoped>

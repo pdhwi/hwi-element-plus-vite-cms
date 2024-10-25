@@ -71,32 +71,22 @@ const hwiFromDemoData = {
     demo2Struct: {
         struct: {},
         addStruct: {
-            cn_name: 'INPUT',
-            name: 'INPUT',
-            zone: 'SELECT',
+            select: 'SELECT',
+            multiple:'SELECT_MULTIPLE',
+            multiple_collapse:'SELECT_MULTIPLE_COLLAPSE'
         },
         editStruct: {
-            cn_name: 'INPUT',
-            name: 'INPUT',
-            zone: 'SELECT',
+            select: 'SELECT',
+            multiple:'SELECT_MULTIPLE_COLLAPSE',
+            multiple_collapse:'SELECT_MULTIPLE_COLLAPSE'
         },
         meaning: {
             id: '序号',
-            cn_name: '角色名称',
-            name: 'name',
-            zone: 'zone',
+            select: 'select',
+            multiple: 'multiple',
+            multiple_collapse: 'multiple_collapse',
         },
         topItems: [
-            {
-                key: 'cn_name',
-                value: '角色名称',
-                type: 'input',
-            },
-            {
-                key: 'name',
-                value: 'name',
-                type: 'text',
-            },
             {
                 key: 'zone',
                 value: 'zone',
@@ -105,13 +95,7 @@ const hwiFromDemoData = {
         ],
         searchfrom: [
             {
-                key: 'cn_name',
-                name: '角色名',
-                value: '',
-                type: 'INPUT'
-            },
-            {
-                key: 'zone',
+                key: 'select',
                 name: '区域',
                 value: '',
                 selectArr:[
@@ -125,9 +109,9 @@ const hwiFromDemoData = {
         }
     },
     demo2FormData: {
-        "cn_name": "cn_name2",
-        "name": "name2",
-        "zone": 1
+        "select": 1,
+        "multiple": [],
+        "multiple_collapse":[]
     },
     demo2Data: {
         "code": 1,
