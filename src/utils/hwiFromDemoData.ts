@@ -139,6 +139,74 @@ const hwiFromDemoData = {
                 }
             ]
         },
+    },
+    demo3Struct: {
+        struct: {},
+        addStruct: {
+            checkboxSingle: 'CHECKBOX-SINGLE',
+            checkbox: 'CHECKBOX',
+        },
+        editStruct: {
+            checkboxSingle: 'CHECKBOX-SINGLE',
+            checkbox: 'CHECKBOX',
+        },
+        meaning: {
+            id: '序号',
+            checkbox: 'CHECKBOX',
+            checkboxSingle: 'checkboxSingle',
+        },
+        topItems: [
+            {
+                key: 'zone',
+                value: 'zone',
+                type: 'text',
+            }
+        ],
+        searchfrom: [
+            {
+                key: 'select',
+                name: '区域',
+                value: '',
+                selectArr:[
+                    {label:'全部',value:''},
+                ],
+                type: 'SELECT'
+            },
+        ],
+        searchData: {
+            cn_name: '',
+        }
+    },
+    demo3FormData: {
+        "checkbox": ["a"],
+        "checkboxSingle": ["a"],
+    },
+    demo3Data: {
+        "code": 1,
+        "msg": "Success",
+        "data": {
+            "total": 3,
+            "per_page": 10,
+            "current_page": 1,
+            "last_page": 1,
+            "data": [
+                {
+                    "cn_name": "cn_name1",
+                    "name": "name1",
+                    "zone": "zone1"
+                },
+                {
+                    "cn_name": "cn_name2",
+                    "name": "name2",
+                    "zone": "zone2"
+                },
+                {
+                    "cn_name": "cn_name3",
+                    "name": "name3",
+                    "zone": "zone3"
+                }
+            ]
+        },
     }
 }
 

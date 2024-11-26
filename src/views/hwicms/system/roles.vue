@@ -76,7 +76,6 @@ getItems()
 //初始化参数-获取items--end
 
 
-
 //基础增删改查方法 --start
 function addUrl(addUrl:string ){
   addDialogRef.value.show(true)
@@ -123,6 +122,9 @@ function addData(form:object ){
     resetItems()
   })
 }
+
+
+
 
 function updateData(form:object , id:number ){
   updateObj(form , id ).then(response => {

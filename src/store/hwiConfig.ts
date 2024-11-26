@@ -9,7 +9,8 @@ export const configStore = defineStore('hwiConfig', {
             // 所有这些属性都将自动推断其类型
             successCode: 1,
             structName: '',
-            baseURL: 'http://localhost:8000/',
+            //baseURL: 'http://localhost:8000/',
+            baseURL: 'http://43.139.6.210:7710/',
             imgBaseURL: 'http://server-api.qm.com/storage/',
             signalrUrl: 'http://***********',
             cmsName: 'Hwi-cms',

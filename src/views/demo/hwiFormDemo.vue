@@ -34,6 +34,22 @@
   </el-card>
 
 
+  <el-card >
+    <template #header>
+      <div class="card-header">
+        <span>demo3   CHECKBOX</span>
+      </div>
+    </template>
+    <auto-form  :form="demoResult.demo3FormData"
+                :dataStruct="demoResult.demo3Str"
+                :addForm="true"
+                :selectObj="demoResult.demo3SelectObj"
+                @submitForm="submitForm"
+    > </auto-form>
+  </el-card>
+
+
+
 </template>
 
 <script setup lang="ts" name="hwiFormDemo">
@@ -50,30 +66,45 @@ let demoResult=reactive({
   demo2FormData : hwiFromDemoData.demo2FormData,
   demo2SelectObj : {
     'select':[
-      {label:'全部',value:0,},
+      {label:'11111',value:0,},
       {label:'区域1',value:1},
       {label:'区域2',value:2},
       {label:'区域3',value:3,disabled:true},
     ],
     'multiple':[
-      {label:'全部',value:0,},
+      {label:'11111',value:0,},
       {label:'区域11',value:1},
       {label:'区域22',value:2},
       {label:'区域33',value:3},
     ],
 
     'multiple_collapse':[
-      {label:'全部',value:0,},
+      {label:'11111',value:0,},
       {label:'collapse1',value:1},
       {label:'collapse2',value:2},
       {label:'collapse3',value:3},
     ],
+  },
+  demo3Str : hwiFromDemoData.demo3Struct,
+  demo3FormData : hwiFromDemoData.demo3FormData,
+  demo3SelectObj : {
+    "checkbox":[
+      {label:'c1',value:"a",},
+      {label:'c2',value:"b",},
+    ],
+    "checkboxSingle":[
+      {label:'c1',value:"a",},
+      {label:'c2',value:"b",},
+    ]
   }
 })
 
 
 console.log(hwiFromDemoData)
 
+function submitForm(data:object){
+  console.log("submitForm" ,data )
+}
 /**
  * 下拉回调
  * @param val  变动后的值

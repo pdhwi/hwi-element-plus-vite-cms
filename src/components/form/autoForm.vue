@@ -7,12 +7,22 @@
     >
       <el-input v-if="formStruct[key] === 'INPUT'"  v-model="props.form[key]" />
 
+      <el-checkbox-group v-else-if="formStruct[key]  === 'CHECKBOX-SINGLE'" :max="1" v-model="props.form[key]" >
+        <el-checkbox
+            v-for="checkbox_item in selectObj[key]"
+            :label="checkbox_item.value"
+            :model-value="checkbox_item.label"
+        >{{checkbox_item.label}}</el-checkbox>
+      </el-checkbox-group>
+
       <el-checkbox-group v-else-if="formStruct[key]  === 'CHECKBOX'"  v-model="props.form[key]" >
         <el-checkbox
             v-for="checkbox_item in selectObj[key]"
-            :label="checkbox_item.label"
-        >{{checkbox_item.value}}</el-checkbox>
+            :label="checkbox_item.value"
+            :model-value="checkbox_item.label"
+        >{{checkbox_item.label}}</el-checkbox>
       </el-checkbox-group>
+
 
       <el-select v-else-if="formStruct[key]  === 'SELECT'"  v-model="props.form[key]" filterable placeholder="请选择"
                  @change="selectCallBack(props.form[key], key )"
@@ -54,7 +64,6 @@
         >
         </el-option>
       </el-select>
-
     </el-form-item>
 
     <el-form-item>
