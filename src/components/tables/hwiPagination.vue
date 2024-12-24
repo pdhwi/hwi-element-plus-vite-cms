@@ -69,6 +69,14 @@ watch(
 .hwi-pagination{
   padding: 15px 0 ;
   width: 100%;
+
+
+  @media (min-width: 600px) {
+    position:fixed;
+    bottom:0px;
+    right:20px;
+  }
+
 }
 .hwi-pagination .el-pagination .el-input__inner {
   background-color: #fff ;

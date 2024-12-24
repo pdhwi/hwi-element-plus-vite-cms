@@ -64,6 +64,18 @@
         >
         </el-option>
       </el-select>
+
+      <el-date-picker
+          v-else-if="formStruct[key]  === 'DATE_PICKER'"
+          v-model="props.form[key]"
+          type="datetimerange"
+          :shortcuts="shortcuts"
+          value-format="YYYY-MM-DD HH:mm:ss"
+          range-separator="To"
+          start-placeholder="Start date"
+          end-placeholder="End date"
+      />
+
     </el-form-item>
 
     <el-form-item>
@@ -87,6 +99,36 @@ const props = defineProps({
 const emit = defineEmits(["submitForm"])
 let formStruct = props.addForm ? props.dataStruct.addStruct : props.dataStruct.editStruct
 let formMeaning = props.dataStruct.meaning
+
+const shortcuts = [
+  {
+    text: '最近10分钟',
+    value: () => {
+      const end = new Date()
+      const start = new Date()
+      start.setTime(start.getTime() - 60 * 1000 * 10);
+      return [start, end]
+    },
+  },
+  {
+    text: '最近七天',
+    value: () => {
+      const end = new Date()
+      const start = new Date()
+      start.setDate(start.getDate() - 7)
+      return [start, end]
+    },
+  },
+  {
+    text: '最近一个月',
+    value: () => {
+      const end = new Date()
+      const start = new Date()
+      start.setMonth(start.getMonth() - 1)
+      return [start, end]
+    },
+  },
+]
 
 const onSubmit = () => {
   emit("submitForm",props.form)

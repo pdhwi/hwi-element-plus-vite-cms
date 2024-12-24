@@ -6,15 +6,18 @@ const hwiFromDemoData = {
         addStruct: {
             cn_name: 'INPUT',
             name: 'INPUT',
+            picker:'DATE_PICKER',
         },
         editStruct: {
             cn_name: 'INPUT',
             name: 'INPUT',
+            picker:'DATE_PICKER',
         },
         meaning: {
             id: '序号',
             cn_name: '角色名称',
             name: 'name',
+            picker:'时间',
         },
         topItems: [
             {
@@ -42,7 +45,8 @@ const hwiFromDemoData = {
     },
     demo1FormData: {
         "cn_name": "cn_name1",
-        "name": "name1"
+        "name": "name1",
+        "picker": "",
     },
     demo1Data: {
         "code": 1,
